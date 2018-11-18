@@ -1,0 +1,41 @@
+-- we don't know how to generate schema hospital (class Schema) :(
+create table hospitals
+(
+	id int auto_increment
+		primary key,
+	adress varchar(100) not null,
+	constraint adress
+		unique (adress)
+)
+;
+
+create table persons
+(
+	id int auto_increment,
+	surname varchar(50) null,
+	firstname varchar(50) null,
+	secondname varchar(50) null,
+	hospital_id int null,
+	constraint id
+		unique (id),
+	constraint persons_ibfk_1
+		foreign key (hospital_id) references hospitals (id)
+			on update cascade on delete cascade
+)
+;
+
+alter table persons
+	add primary key (id)
+;
+
+\* Данные для таблицы поликлиник*\
+9	3-я просека, 150
+7	Вольская ул., 74
+6	Ново-Садовая ул., 158, корп. 2
+2	Полевая ул., 80
+10	просп. Карла Маркса, 165Б
+1	Ташкентская ул., 159
+3	ул. Г.С. Аксакова, 13
+4	ул. Дыбенко, 165
+8	ул. Советской Армии, 56
+5	Чапаевская ул., 165
